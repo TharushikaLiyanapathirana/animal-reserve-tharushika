@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "animal-reserve-tharushika/Tharu-animal.js",
-        "code": "exports.handler = function(event, context, callback) {\n    console.log(JSON.stringify(event,null,2));\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "code": "let AWS = require(\"aws-sdk\");\nlet rekog = new AWS.Rekognition();\n\nexports.handler = function(event, context, callback) {\n    //console.log(JSON.stringify(event, null, 2));\n\n    let s3 = event.Records[0].s3;\n    rekog.detectLabels({\n        Image: {\n            S3Object: {\n                Bucket: s3.bucket.name,\n                Name: s3.object.key\n            }\n        },\n        MaxLabels: 1\n    }).promise()\n    .then(data => {\n        console.log(data);\n        callback(null, {});\n    })\n    .catch(err => callback(err));\n}\n",
         "config": {
           "runtime": "nodejs8.10",
           "handler": "handler",
@@ -47,12 +47,14 @@
             "functionId": "6e864c6d-d5cd-4593-8fad-d829596b2f36",
             "event": "{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
           }
+        },
+        "customSecurityPolicy": {
+          "Version": "2012-10-17",
+          "Statement": []
         }
       }
     },
-    "deletedFiles": [
-      "animal-reserve-tharushika/lambda.js"
-    ],
+    "deletedFiles": [],
     "rootNode": "a74fd665-1a26-43ef-8f6e-892652ca0de3",
     "openFiles": [
       "6e864c6d-d5cd-4593-8fad-d829596b2f36"
@@ -86,7 +88,13 @@
       }
     ],
     "packageJSON": {
-      "dependencies": {}
+      "dependencies": {
+        "aws-sdk": {
+          "name": "aws-sdk",
+          "version": "2.566.0",
+          "language": "javascript"
+        }
+      }
     }
   },
   "PROJECT_META": {
@@ -96,7 +104,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1573109409305
+    "lastSave": 1573111523547
   },
   "VCS_STATE": {
     "provider": "GitHub",
