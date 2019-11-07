@@ -1,10 +1,11 @@
 let AWS = require("aws-sdk");
+const ddb = new AWS.DynamoDB.DocumentClient();
 let rekog = new AWS.Rekognition();
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
     //console.log(JSON.stringify(event, null, 2));
 
-    let s3 = event.Records[0].s3;
+   let s3 = event.Records[0].s3;
     rekog.detectLabels({
         Image: {
             S3Object: {
@@ -14,9 +15,12 @@ exports.handler = function(event, context, callback) {
         },
         MaxLabels: 1
     }).promise()
-    .then(data => {
-        console.log(data);
-        callback(null, {});
-    })
-    .catch(err => callback(err));
+        .then(data => {
+            console.log(data);
+            let label = data.Labels[0].Name;
+
+
+/* drag-n-drop DDB table */
+        })
+        .catch(err => callback(err));
 }
