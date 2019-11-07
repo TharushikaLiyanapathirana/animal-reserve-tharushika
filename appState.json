@@ -1,0 +1,108 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "a74fd665-1a26-43ef-8f6e-892652ca0de3": {
+        "id": "a74fd665-1a26-43ef-8f6e-892652ca0de3",
+        "parent": null,
+        "name": "animal-reserve-tharushika",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "6e864c6d-d5cd-4593-8fad-d829596b2f36"
+        ],
+        "isRemovable": false,
+        "filePath": "animal-reserve-tharushika"
+      },
+      "6e864c6d-d5cd-4593-8fad-d829596b2f36": {
+        "id": "6e864c6d-d5cd-4593-8fad-d829596b2f36",
+        "parent": "a74fd665-1a26-43ef-8f6e-892652ca0de3",
+        "name": "Tharu-animal.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "animal-reserve-tharushika/Tharu-animal.js",
+        "code": "exports.handler = function(event, context, callback) {\n    console.log(JSON.stringify(event,null,2));\n    \n    callback(null, {\"message\": \"Successfully executed\"});\n}",
+        "config": {
+          "runtime": "nodejs8.10",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": []
+        },
+        "triggers": [
+          {
+            "resourceName": "s3sipAnimalUploads",
+            "config": {
+              "type": "s3:ObjectCreated:*",
+              "keyPrefix": "",
+              "keySuffix": ""
+            }
+          }
+        ],
+        "testCases": {
+          "61320991-badd-45ae-97ad-5b7890084d2e": {
+            "id": "61320991-badd-45ae-97ad-5b7890084d2e",
+            "name": "Unnamed event",
+            "functionId": "6e864c6d-d5cd-4593-8fad-d829596b2f36",
+            "event": "{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
+          }
+        }
+      }
+    },
+    "deletedFiles": [
+      "animal-reserve-tharushika/lambda.js"
+    ],
+    "rootNode": "a74fd665-1a26-43ef-8f6e-892652ca0de3",
+    "openFiles": [
+      "6e864c6d-d5cd-4593-8fad-d829596b2f36"
+    ],
+    "currentFileId": "6e864c6d-d5cd-4593-8fad-d829596b2f36",
+    "resources": {
+      "s3sipAnimalUploads": {
+        "name": "s3sipAnimalUploads",
+        "type": "S3",
+        "config": {
+          "mode": 1,
+          "bucket": {
+            "region": "us-east-1",
+            "name": "sip-animal-uploads"
+          }
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": null,
+      "definitions": {}
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "animal-reserve-tharushika",
+    "projectDescription": "animal",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1573109409305
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "animal-reserve-tharushika",
+      "url": "https://github.com/TharushikaLiyanapathirana/animal-reserve-tharushika"
+    }
+  }
+}
